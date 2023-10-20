@@ -1,0 +1,13 @@
+package ex1;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.GenericApplicationContext;
+
+public class Ex1_Main {
+	public static void main(String[] args) {
+		ApplicationContext ctx = new GenericApplicationContext();
+	Ex1_Resource ref = ctx.getBean("ex1",Ex1_Resource.class);
+	System.out.println();
+	}
+
+}

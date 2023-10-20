@@ -1,0 +1,17 @@
+package ex2;
+
+import org.aopalliance.intercept.MethodInterceptor;
+import org.aopalliance.intercept.MethodInvocation;
+
+public class MessageAdvice2 implements MethodInterceptor{
+
+	@Override
+	public Object invoke(MethodInvocation invocation) throws Throwable {
+		System.out.println("하하하 안녕");
+		Object ref = invocation.proceed();
+		System.out.println("하하하 안녕하지않아");
+				
+		return null;
+	}
+
+}

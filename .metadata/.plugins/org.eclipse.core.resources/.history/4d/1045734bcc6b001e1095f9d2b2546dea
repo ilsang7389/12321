@@ -1,0 +1,26 @@
+package ex2;
+
+import ex1.LifeInter;
+
+public class LIfeBean implements LifeInter {
+private String name;
+
+	@Override
+	public void init() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void destroy() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public String method1() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,19 @@
+package ex2;
+
+import org.springframework.aop.framework.ProxyFactoryBean;
+
+public class MessageMain {
+	public static void main(String[] args) {
+		allHoinpoint();
+	}
+
+	private static void allHoinpoint() {
+		ProxyFactoryBean pfBean = new ProxyFactoryBean();
+		//Target 객체의 정보를 ProxyFactoryBean 저장
+		pfBean.setTarget(new MesseageImple());
+		//Advice를 적용
+		pfBean.addAdvice(new Ex1_MessageAdvice());
+		// 요청해보기
+		Message prMessage = (Message) pfBean.getObject();
+	}
+}

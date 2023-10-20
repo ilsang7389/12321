@@ -1,0 +1,12 @@
+package kr.co.ictedu.mvc;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class DefaultController {
+
+	public String main() {
+		
+		return main;
+	}
+}

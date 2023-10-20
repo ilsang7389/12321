@@ -1,0 +1,28 @@
+package ex3;
+
+public class DaoImple implements DaoInter{
+
+	public DaoImple() {
+		System.out.println("DaoImple 생성자 호출!");
+	}
+	@Override
+	public void first() {
+		
+	}
+
+	@Override
+	public String second() {
+		return null;
+	}
+
+	@Override
+	public void third() {
+		
+	}
+
+	@Override
+	public String firstStatementTest(int code) {
+		return null;
+	}
+
+}

@@ -1,0 +1,45 @@
+package ex1;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+@WebServlet("/AopDemoServlet")
+public class AopDemoServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       private ApplicationContext ctx;
+       
+       @Override
+    public void init() throws ServletException {
+    ctx = new GenericXmlApplicationContext("ex1/ex1_aop.xml");
+    }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+	DaoInter dao = ctx.getBean("dao", DaoInter.class);
+	
+	dao.first();
+	dao.second();
+	dao.firstStatementTest(hashCode());
+	//dao.third();
+	
+	}
+	@Around("execution(* ex1.DaoImple.first*(..))")
+	public void checkTome(ProceedingJoinPoint pjp) throws Throwable{
+		long start = System.currentTimeMillis();
+		//Target 객체의 메소드 호출
+		pjp.proceed();
+		long end = System.currentTimeMillis();
+		System.out.println("수행된 속도 : " +(end-start)+"초");
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	}
+
+}

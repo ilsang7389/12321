@@ -1,0 +1,17 @@
+package ex1;
+// Ex1_MyResource를 주입 받아서 사용할 객체
+public class Ex1_Resource {
+
+	
+	private Ex1_MyResource res;
+	//ex1_res.xml
+	public void setRes(Ex1_MyResource res) {
+		this.res = res;
+	}
+
+	public Ex1_MyResource getRes() {
+		return res;
+	}
+	
+	
+}

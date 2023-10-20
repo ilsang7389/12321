@@ -1,0 +1,18 @@
+package ex1;
+//DI : 객체 의존성주입이다.
+public class MyTestA {
+	private ResouceB b;
+	public MyTestA() {
+		// has a 관계, 결하보가 높다
+		// b = new ResouceB();
+		System.out.println("myTestA 생성");
+	}
+	//외부에서 생성한 후에 그 주소를 주입 받는다.
+	//<property name = "b" ....
+	public void setB(ResouceB b) {
+		this.b = b;
+	}
+	
+	
+
+}

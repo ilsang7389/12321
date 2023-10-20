@@ -1,0 +1,21 @@
+package ex2;
+
+import org.springframework.aop.framework.ProxyFactoryBean;
+
+public class MessageMain {
+	public static void main(String[] args) {
+		allHoinpoint();
+	}
+
+	private static void allHoinpoint() {
+		//AOP의 Advice와 Target의 관계를 관리해주는 객체이다.
+		ProxyFactoryBean pfBean = new ProxyFactoryBean();
+		//Target 객체의 정보를 ProxyFactoryBean 저장
+		pfBean.setTarget(new MesseageImple());
+		//Advice를 적용
+		pfBean.addAdvice(new Ex1_MessageAdvice());
+		// 요청해보기
+		Message prMessage = (Message) pfBean.getObject();
+		prMessage.test2();
+	}
+}

@@ -1,0 +1,36 @@
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+
+@Aspect
+public class BeforeAdvice {
+
+    @Autowired
+    private LoginTest test;
+
+    @Autowired
+    private ApplicationContext context;
+
+    private Thread loginThread;
+
+    @Before("execution(* exam.SecurityImple.*(..))")
+    public void mylogintest() throws Exception {
+        loginThread = new Thread(() -> {
+            if (test.isRes()) {
+                System.out.println("인증완료");
+                // "인증 완료" 상태에서 mylogintest 메서드 종료
+            } else {
+                System.out.println("실패입니다");
+            }
+        });
+        loginThread.start();
+    }
+
+    // 이 메서드를 호출하여 mylogintest 메서드를 종료할 수 있습니다.
+    public void stopMyLoginTest() {
+        if (loginThread != null && loginThread.isAlive()) {
+            loginThread.interrupt();
+        }
+    }
+}

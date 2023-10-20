@@ -1,0 +1,46 @@
+package kr.co.ictedu.mvc.dao;
+
+import java.util.List;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.stereotype.Repository;
+
+import kr.co.ictedu.mvc.dto.FboardDTO;
+
+//Dao단은 @Repository 자원관련 빈을 등록해서 사용
+@Repository
+public class FboardDao implements FBoardDaoInter {
+
+	private SqlSessionTemplate ss;
+	
+	@Override
+	public void addFboard(FboardDTO vo) {
+
+	}
+
+	@Override
+	public List<FboardDTO> listFboard() {
+		return null;
+	}
+
+	@Override
+	public void updateHit(int num) {
+	
+	}
+
+	@Override
+	public FboardDTO detailFboard(int num) {
+		return null;
+	}
+
+	@Override
+	public void deleteFboard(int num) {
+
+	}
+
+	@Override
+	public void updateFboard(FboardDTO vo) {
+
+	}
+
+}

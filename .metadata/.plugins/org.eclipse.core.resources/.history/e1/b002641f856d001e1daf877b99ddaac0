@@ -1,0 +1,23 @@
+package exam;
+
+public class SecurityImple implements BizService{
+	
+	
+	@Override
+	public void LoginTest(boolean res) {
+		if(res= false) {
+		System.out.println("비즈니스 로직 3 수행");
+	}
+}
+
+	@Override
+	public void securityMethod() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void LoginTest(boolean res) {
+		// TODO Auto-generated method stub
+		
+	}

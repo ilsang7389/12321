@@ -1,0 +1,80 @@
+package kr.co.ictedu.mvc.controller.board;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import kr.co.ictedu.mvc.dao.FBoardDaoInter;
+import kr.co.ictedu.mvc.dto.FboardDTO;
+
+@Controller
+public class FboardController {
+
+	// byname 이름 끌고 들어옴 뒤에는 똑같은 글자에 소문자로 작성하기
+	@Autowired
+	private FBoardDaoInter fBoardDaoInter;
+
+	// form
+	@GetMapping("/fbordWrite")
+	public String fboardForm() {
+		return "fboard/write";
+	}
+	// 메서드 이름 : tboardInsert
+	// sysout으로 입력값 출력
+	// 반환형 : void
+
+	@PostMapping("/fboardInsert")
+	public String tboardInsert(FboardDTO vo) {
+
+		System.out.println(vo.getSubject());
+		fBoardDaoInter.addFboard(vo);
+		// 리다이렉트로 다시 컨트롤레에게 요청을 하는 방식
+		return "redirect:fboardList";
+	}
+
+	@GetMapping("/fboardList")
+	public String tboardList(Model m) {
+		List<FboardDTO> list = fBoardDaoInter.listFboard();
+		m.addAttribute("list", list);
+		return "fboard/list";
+	}
+
+	// list에서 상세보기 링크를 클릭하면 hit 호출되고 +1업데이트 한 후
+	// redirect: 로 num을 파라미터로 전송한다
+	// hit
+	@GetMapping("/fboardHit")
+	public String fboardHit(int num) {
+		fBoardDaoInter.updateHit(num);
+		return "redirect:fboardDetail?num=" + num;
+	}
+	@GetMapping("/fboardDetail")
+	public String fboardDetail(int num, Model model) {
+		FboardDTO v = fBoardDaoInter.detailFboard(num);
+		model.addAttribute("v", v);
+		return "fboard/info";
+	}
+	
+
+	@GetMapping("/fboardModify")
+	public String fboardModify(int num, Model m) {
+		FboardDTO v = fBoardDaoInter.detailFboard(num);
+		m.addAttribute("v", v);
+		return "fboard/modify";
+	}
+
+	@PostMapping("/fboardUpdate")
+	public String fboardUpdate(FboardDTO vo) {
+		fBoardDaoInter.updateFboard(vo);
+		return "redirect:fboardDetail?num="+vo.getNum();
+	}
+	
+	@PostMapping("/fboardDelete")
+	public String fboarddelete(FboardDTO vo) {
+		fBoardDaoInter.updateFboard(vo);
+		return "redirect:fboardDetail?num="+vo.getNum();
+	}
+}

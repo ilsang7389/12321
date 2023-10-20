@@ -1,0 +1,10 @@
+package ex2;
+
+public class LifeFactoryMain {
+	public static void main(String[] args) {
+		LIfeBean lif = new LIfeBean();
+		lif.setName(name);
+		System.out.println(lif);
+	}
+
+}

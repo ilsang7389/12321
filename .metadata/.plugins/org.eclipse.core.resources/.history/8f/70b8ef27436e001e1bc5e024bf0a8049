@@ -1,0 +1,10 @@
+package dto;
+
+public class BoardBVO {
+	private int num;
+	private String title;
+	private String writer;
+	private String content;
+	private String reip;
+	private String bdate;
+}

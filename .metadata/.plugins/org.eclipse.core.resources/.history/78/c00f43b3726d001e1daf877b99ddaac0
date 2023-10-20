@@ -1,0 +1,22 @@
+package exam;
+
+
+public class SecurityImple  implements BIzService{
+	LoginTest test = new LoginTest(); 
+	@Override
+	public void securityMethod() {
+		if(test.isRes() == false) {
+			System.out.println("인증 완료");
+		System.out.println("비지니스 로직 3 수행");
+		}else {
+	
+		}
+	}
+	@Override
+	public void wrongmessage() {
+		System.out.println("비밀번호 오류");
+		
+	}
+	
+
+}

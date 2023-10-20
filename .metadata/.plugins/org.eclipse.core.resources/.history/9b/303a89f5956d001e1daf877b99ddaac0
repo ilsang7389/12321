@@ -1,0 +1,32 @@
+package exam;
+
+import java.io.OutputStream;
+import java.io.PrintStream;
+
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+
+@Aspect
+public class BeforeAdvice {
+
+	@Autowired
+	LoginTest test;
+
+
+
+
+	@Before("execution(* exam.SecurityImple.*(..))")
+	public void mylogintest() {
+		if (test.isRes() == false) {
+			System.out.println("실패입니다");
+
+		} else {
+			System.out.println("인증완료");
+			  System.clearProperty(test);
+
+		}
+	}
+
+}

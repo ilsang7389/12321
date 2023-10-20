@@ -1,0 +1,30 @@
+package exam;
+
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+
+
+
+@Aspect
+public class BeforeAdvice {
+
+    @Autowired
+    private LoginTest test;
+
+    @Autowired
+    private ApplicationContext context;
+
+    private boolean authenticated = false; // 인증 상태를 나타내는 변수
+
+    @Before("execution(* exam.SecurityImple.*(..))")
+    public void mylogintest() throws Exception {
+        if (test.isRes() && !authenticated) {
+            System.out.println("인증완료");
+            authenticated = true; // 인증 상태를 변경
+        } else {
+            System.out.println("실패입니다");
+        }
+    }
+}

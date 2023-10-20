@@ -1,0 +1,9 @@
+package ex3;
+
+public class TodayBeforeAdvice {
+  
+	MyPublic mp ;
+
+	
+
+}

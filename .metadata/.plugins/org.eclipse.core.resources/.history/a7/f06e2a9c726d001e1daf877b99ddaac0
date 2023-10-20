@@ -1,0 +1,34 @@
+package exam;
+
+import java.util.Properties;
+import java.util.Scanner;
+
+public class LoginTest {
+	private Scanner sc;
+	private String pwd;
+	private boolean res;
+	private Properties prop;
+	public LoginTest() {
+		String[] msg = {"틀렸습니다." , "아쉽군요. 마지막 한번만 더!" , "너 out이야" };
+		sc = new Scanner(System.in);
+		for(int i = 0 ; i<msg.length;i++) {
+			System.out.println("비밀번호 입력  : ");
+			String pwd = sc.nextLine();
+			if(!pwd.equals("1")) {
+				System.out.println(msg[i]);
+				 if (i == msg.length - 1) {
+		                System.out.println("비밀번호 오류"); // 모든 메시지 출력 후에 오류 메시지 출력
+		            }
+				res = false;
+			
+			}else {
+				res = true;
+			
+			}
+		}
+	}
+	public boolean isRes() {
+		return res;
+	}
+	
+}

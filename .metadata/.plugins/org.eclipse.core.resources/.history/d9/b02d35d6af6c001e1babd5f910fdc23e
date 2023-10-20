@@ -1,0 +1,22 @@
+package ex3;
+
+import java.sql.Connection;
+
+import javax.naming.InitialContext;
+
+public class MyConn {
+	private static DataSource ds;
+	static {
+		InitialContext ctx;
+		try {
+			
+		} catch {
+			// TODO: handle finally clause
+		}
+	}
+	public static Connection getDs() {
+		
+		return null;
+	}
+
+}

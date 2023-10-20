@@ -1,0 +1,15 @@
+package kr.co.ictedu.mvc.dao;
+
+import java.util.List;
+
+import kr.co.ictedu.mvc.dto.FboardDTO;
+
+public interface FBoardDaoInter {
+	public void addFboard(FboardDTO vo); //입력
+	public List<FboardDTO> listFboard(); //입력
+	public void updateHit(int num); //입력
+	public void addFboard(FboardDTO vo); //입력
+	public void addFboard(FboardDTO vo); //입력
+	public void addFboard(FboardDTO vo); //입력
+
+}

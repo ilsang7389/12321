@@ -1,0 +1,7 @@
+package ex2;
+
+import org.aopalliance.intercept.MethodInterceptor;
+
+public class MessageAdvice2 implements MethodInterceptor{
+
+}

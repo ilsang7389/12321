@@ -1,0 +1,15 @@
+package exam;
+
+public class SecurityImple implements BizService {
+
+	
+	@Override
+	public void securityMethod() {
+		if() {
+			
+		System.out.println("비밀번호 오류");
+		}else {
+			System.out.println("비지니스 로직 3 실행");
+	}
+}
+}

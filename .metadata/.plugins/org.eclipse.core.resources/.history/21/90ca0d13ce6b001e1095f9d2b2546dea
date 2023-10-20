@@ -1,0 +1,8 @@
+package ex2;
+
+public class LifeFactoryMain {
+	public static void main(String[] args) {
+		
+	}
+
+}

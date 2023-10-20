@@ -1,0 +1,34 @@
+package kr.co.ictedu.mvc.controller.json;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import dto.BoardBVO;
+import dto.BoardVO;
+
+@Controller
+public class JsonDemoController {
+	private List<Map<String, String>> useList;
+	public JsonDemoController() {
+		useList = new  ArrayList<Map<String,String>>();
+	}
+	//board/01/ict
+	@GetMapping("/board/{bnum}/{bid}")
+	public BoardVO myBlog(@PathVariable Integer bnum, @PathVariable String bid) {
+		BoardVO vo = new BoardVO();
+		vo.setBdate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+		vo.setContent("ÇÏÇÏ È£È£È£");
+		vo.setNum(bnum);
+		vo.setReip("192.168.0.11");
+		vo.setTitle("¿À´ÃÀº ¿ØÁö ¤¾¤¾"+bnum);
+		vo.setWriter(bid);
+		return vo;
+	}
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;ex1.TBV.java&apos; to &apos;TV.java&apos;&#x0D;&#x0A;- Original project: &apos;spring1013_di&apos;&#x0D;&#x0A;- Original element: &apos;ex1.TBV.java&apos;&#x0D;&#x0A;- Renamed element: &apos;ex1.TV.java&apos;" description="Rename compilation unit &apos;TBV.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src=/optional=/true=/=/maven.pomderived=/true=/&lt;ex1{TBV.java" name="TV.java" references="false" stamp="1697180176014" version="1.0"/>
+</session>

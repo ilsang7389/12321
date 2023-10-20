@@ -1,0 +1,19 @@
+package ex1;
+
+import com.sun.org.apache.bcel.internal.generic.RETURN;
+
+public class ResourceB {
+	private String uname;
+	public ResourceB() {
+		System.out.println("Resourece가 생성이 됨!");
+	}
+	public String getUname() {
+		return uname;
+	}
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
+	public int res() { // 특정 수를 돌려주는 메서드
+		return 100000;
+	}
+}

@@ -1,0 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<%@include file="../temp/header.jsp"%>
+
+<article>
+	<header style="color: white;"> Main Page</header>
+	<ul class="list-unstyled">
+		<li>
+	</ul>
+</article>
+<%@include file="../temp/footer.jsp"%>

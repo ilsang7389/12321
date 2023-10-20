@@ -1,0 +1,12 @@
+package exam;
+
+public interface BIzService {
+	public void  securityMethod();
+	
+	public void wrongmessage();
+	
+	public static void password(int password) {
+		password = 1;
+	}
+
+}

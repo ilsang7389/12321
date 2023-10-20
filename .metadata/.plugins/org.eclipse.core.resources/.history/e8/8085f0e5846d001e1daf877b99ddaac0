@@ -1,0 +1,10 @@
+package exam;
+
+public interface BizService {
+	public void securityMethod();
+
+	void LoginTest(boolean res);
+
+	void securityMethod(boolean res);
+	
+}

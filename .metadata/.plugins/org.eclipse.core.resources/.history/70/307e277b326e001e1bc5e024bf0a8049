@@ -1,0 +1,209 @@
+package kr.co.ictedu.mvc.controller.member;
+
+import java.util.Map;
+import java.util.Map.Entry;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.http.HttpRequest;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+// ModelAndView : 모델이 실행하고 난 후 ControllerServlet 에게 View 이름,값(Forward 일때) 을 보냄
+// View이름, 동적으로 모델의 값이 달라질 수도 있을 때 사용을 권장
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import dto.MemberDTO;
+
+@Controller
+public class Ex1Controller {
+
+	/*
+	 * @GetMapping("/memForm") public ModelAndView memForm() { ModelAndView mav =
+	 * new ModelAndView("member/memberForm"); // 위에 것이랑 같은 동작
+	 * mav.setViewName("member/memberForm"); return mav;
+	 * 
+	 * }
+	 */
+
+	// 단순하게 뷰만 반환 : string
+	@GetMapping("/memForm")
+	public String memForm() {
+
+		return "member/memberForm";
+
+	}
+
+	// id 중복 체크
+	// Model m : View로 값을 전달할때 사용 : mav.addObject
+	// 여러분이 idchek?id=xman
+	// @RequestMapping(value = "/idchek")
+	// HttpServletRequest request 있어도 작동 ok 없어도 작동 ok
+	/*
+	 * @GetMapping(value = "/idcheck") public String idCheck(Model m, String id) {
+	 * // String id = request.getParameter("id"); String dbid = "xman"; if
+	 * (dbid.equals(id)) { m.addAttribute("res", 1); } else { m.addAttribute("res",
+	 * 0); } return "member/idchk";
+	 * 
+	 * }
+	 */
+
+	// 이름 : 윤일상, 제출형식 : 댓글 스샷
+	// MemberForm 입력된 파라미터를 모두 sysout로 각각 콘솔에 출력하고
+	// Member/success.jsp에서는 이 데이터를 각각 EL로 출력하세요
+	@PostMapping(value = "/memberback")
+	public String memberIN(Model m, String id, String uname, String pwd, String[] chk) {
+		System.out.println("uname :" + uname);
+		System.out.println("pwd :" + pwd);
+		System.out.println("chk :" + chk);
+		System.out.println("id : " + id);
+
+		m.addAttribute("uname", uname);
+		m.addAttribute("pwd", pwd);
+		m.addAttribute("chk", chk);
+		m.addAttribute("id", id);
+
+		return "member/success";
+	}
+
+	// DTO로 파라미터를 바인딩 시켜준다.
+	// form or get
+	// name ="파라미터 이름" == DTO의 property
+	// @ModelAttribute 를 사용하면 모델이 수행 후 값을 전송하는 것과 같다.
+	// m.addAttribute("vo", vo); 이거와 같다.
+	@PostMapping(value = "/memberIn2")
+	public String memberIN(Model m, @ModelAttribute(value = "vo") MemberDTO vo) {
+		System.out.println("--------------");
+		System.out.println("uname :" + vo.getUname());
+		System.out.println("pwd :" + vo.getPwd());
+
+		System.out.println("id : " + vo.getId());
+
+		for (String e : vo.getChk()) {
+			System.out.println(e);
+		}
+		vo.setMdate("2023년 10월 19일");
+		/* m.addAttribute("vo", vo); */
+
+		return "member/success2";
+	}
+
+	// *****
+	// @REquestParam 어놑이션은 파라미터를 검증하는 용도인데
+	// Map<String, String> vo => @RequestParam을 지정한다. 둘이 세트!!
+	// Map일 경우에는 checkbox와 같이 배열타입을 따로 인자로 선언해서 가져오는 편이 훨씬 용이하다.
+
+	@PostMapping("/memberIn")
+	public String memberIN(Model m, @RequestParam Map<String, Object> vo, String[] chk) {
+		/*
+		 * System.out.println("--------------"); System.out.println("uname :" +
+		 * vo.get("uname")); System.out.println("pwd :" + vo.get("pwd"));
+		 * System.out.println("id : " + vo.get("id"));
+		 */
+
+		for (Map.Entry<String, Object> e : vo.entrySet()) {
+			System.out.println(e.getKey() + ":" + e.getValue() + ":" + e.getClass());
+		}
+
+		for (String e : chk) {
+			System.out.println(e);
+		}
+
+		vo.put("mdate", "2023년 10월 19일");
+		m.addAttribute("vo", vo);
+		return "member/success2";
+	}
+
+	// GET 방식 파라미터 처리
+	// http://localhost/spring1019_mvc/joinSuccess3?type=superemember&id=bigdady
+	@GetMapping("/joinSuccess")
+	public String joinSuccess(Model m, String type, String id) {
+		String wcMsg = "환영합니다." + id + "님, 등급 : " + type;
+		m.addAttribute("wcMsg", wcMsg);
+
+		return "member/success3";
+
+	}
+
+	// 파라미터 검증용 **** <중요>
+	// @RequestParam(required = true ) 해당속성의 파라미터를 검증 =>HTTP 상태 400 =>잘못된 요청
+	// @RequestParam(defaultValue = "guest")
+	@GetMapping("/joinSuccess2")
+	public String joinSuccess2(Model m, @RequestParam(defaultValue = "guest") String type,
+			@RequestParam(required = true) String id) {
+		String wcMsg = "환영합니다." + id + "님, 등급 : " + type;
+		m.addAttribute("wcMsg", wcMsg);
+
+		return "member/success3";
+	}
+
+	@GetMapping("/joinSuccess3")
+	public String joinSuccess3(Model model, @RequestParam Map<String, String> param) {
+		// GET 방식으로 넘온 파라미터를 키와 값으로 추출해서 출력하거나 가공하고 싶을 때 사용
+
+		StringBuilder sb = new StringBuilder();
+		sb.append("안녕하세요").append("\n");
+		for (Map.Entry<String, String> e : param.entrySet()) {
+			sb.append(e.getKey()).append(":");
+			sb.append(e.getValue()).append("\n");
+		}
+		System.out.println(sb);
+		System.out.println("=============");
+
+		// 미리 정해두고 사용할 때
+		String wcMsg = "환영합니다." + param.get("id") + "님 , 등급" + param.get("type");
+		model.addAttribute("wcMsg", wcMsg);
+		return "member/success3";
+	}
+
+	// Param 중요합니다 : 블로그나 Vue, React 단의 파라미터ㅓ 값으로 전송 받을때도 자주 사용
+	// @PathVariable -> path중에 {path} 값으로 받아서 파라미터로 인식 하겠다는 설정
+	// http://localhost/spring1019_mvc/path/xman =?/{xman}
+	@GetMapping("/path1/{m}")
+	public String path1(Model model, @PathVariable String m) {
+		System.out.println(m);
+		model.addAttribute("wcMsg", m);
+		return "member/success3";
+	}
+
+	// @PathVariable -> path중에 {path} 값으로 받아서 파라미터로 인식 하겠다는 설정
+	// http://localhost/spring1019_mvc/path/xman/seoul =?/{xman}
+	@GetMapping("/path2/{m}/{addr}")
+	public String path1(Model model, @PathVariable String m, @PathVariable("addr") String n) {
+		System.out.println(m);
+		String msg = m + "/" + n;
+		model.addAttribute("wcMsg", msg);
+		return "member/success3";
+	}
+
+	@GetMapping("/blog2/{bnum}/{bid}")
+	// 커스텀 뷰를 만들어 놓고 반환되는 내용을 알아서 출력, 만약에 반환값이 Object 일경우 Json 타입으로 제공한다.
+	@ResponseBody // 많이 사용하는 어노테이션
+	public String myBlog(@PathVariable Integer bnum, @PathVariable String bid) {
+		bnum = bnum - 10;
+		String msg = "bnum:" + bnum + ",bid:" + bid;
+		System.out.println(msg);
+		return msg;
+	}
+	// 윤일상 : A팀
+	// Ajax 최종테스트
+	// 아이디 값이 존재하면 1, 아니면 0
+	// <요구사항> : url : idcheck
+	// 파라미터 : id 는 반드시 존재해야한다. 없으면 오류
+	// "xman,"bigdaddy","postman" 아이디 배열로 만들어서
+	// 전송된 파라미터값이 아이디 배열에 존재하면 커스텀뷰에 1이나0을 반환하는 메서드를 정의한 후
+	// 실제 폼에서 테스트 하시오.
+	@GetMapping("/idcheck/{id}")
+	public String idcheck(Model model, @RequestParam Map<String, String> param,@PathVariable("id") String id) {
+	
+		
+		return "";
+		
+	}
+}

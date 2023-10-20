@@ -1,0 +1,16 @@
+package kr.co.ictedu.mvc.advice;
+
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.stereotype.Component;
+//일반적인 bean으로 Aspect를 등록한다.
+@Component
+@Aspect
+public class TodayAdvice {	
+	
+	@Before("execution(* kr.co.ictedu.mvc.controller.main.TodayMy*.today*(..))")
+	public void todayBeforeMethod() {
+		System.out.println("오늘 날짜!!!!!!!!!!");
+	}
+	
+}

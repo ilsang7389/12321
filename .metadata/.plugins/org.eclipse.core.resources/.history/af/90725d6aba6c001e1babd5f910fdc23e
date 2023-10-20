@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	<context:annotation-config />
+	<!-- Advice -->
+	<bean id="checkAdvice" class="ex3.advice.CheckAdvice" />
+	<bean id="afterAdvice" class="ex3.advice.NameReturnAdvice" />
+	<bean id="AfterThrowAdvice" class="ex3.advice.AfterThrowAdvice"/>
+	<!-- Aop Bean -->
+	<aop:config>
+		<aop:aspect id="time" ref="checkAdvice">
+			<aop:pointcut
+				expression="execution(* ex3.DaoImple.first*(..))" id="firstP" />
+			<aop:around method="checkTime" pointcut-ref="firstP" />
+		</aop:aspect>
+		<!-- returning= "ret" : 속성과 인자로 선언한 변수 명이 동일 해야 함! -->
+		<aop:aspect id="afterAdvice" ref="afterAdvice">
+			<aop:pointcut expression="execution(* ex3.DaoImple.second(..))" id="second" />
+			<aop:after-returning method="myReturnMethod"  pointcut-ref="second" returning="ret"/>
+		</aop:aspect>
+		
+		<aop:aspect id="AfterThrowAdvice" ref="AfterThrowAdvice">
+		 <aop:pointcut expression="execution(* ex3.DaoImple.third(..))" id="thirdP"/>
+		 <aop:after-throwing method="commThrow" pointcut-ref="thirdp" throwing="ew" />
+		 </aop:aspect>
+	</aop:config>
+	<!-- Target -->
+	<bean id="dao" class="ex3.DaoImple" />
+
+</beans>

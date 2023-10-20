@@ -1,0 +1,24 @@
+package ex4;
+
+public class Ex1_Const {
+private int num;
+private String msg;
+private String code;
+//생성자 오버로딩
+public Ex1_Const(int num) {
+	this.num = num;
+	System.out.println("int 형 호출");
+	
+}
+public Ex1_Const(String msg) {
+
+	this.msg = msg;
+}
+public Ex1_Const(int num, String code) {
+
+	this.code = code;
+}
+
+
+
+}

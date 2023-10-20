@@ -1,0 +1,5 @@
+package kr.co.ictedu.mvc.controller;
+
+public class HelloController {
+
+}

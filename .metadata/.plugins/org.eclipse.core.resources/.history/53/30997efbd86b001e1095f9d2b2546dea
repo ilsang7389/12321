@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!--  lazy=init="true" getBean으로 호출 했을때 생성이된다.
+			scope = "prototype" 을 준것 처럼. 그렇지만 싱글톤이다 -->
+ <bean id="lazy" class="ex3.LazyBean">
+ 	<property name="msg" value="안녕하세요"></property>
+ </bean>
+
+</beans>

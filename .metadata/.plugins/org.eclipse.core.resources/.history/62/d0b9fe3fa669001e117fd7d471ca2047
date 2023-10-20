@@ -1,0 +1,10 @@
+package ex1;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class Tvuser1 {
+	public static void main(String[] args) {
+			var context = new AnnotationConfigApplicationContext(SamsungTV.class);
+	}
+
+}

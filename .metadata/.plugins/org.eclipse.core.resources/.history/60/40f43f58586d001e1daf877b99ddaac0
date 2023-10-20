@@ -1,0 +1,8 @@
+package ex1.advice;
+
+import org.aspectj.lang.annotation.Aspect;
+//<aop:aspectj-autoproxy/> 의해서 ProxyFactory로 관리 되는설정 붙히고 시작하기 ! 꼭!
+@Aspect
+public class AspectDemo {
+ 
+}

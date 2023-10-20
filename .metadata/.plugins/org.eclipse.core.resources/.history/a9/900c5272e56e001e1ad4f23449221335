@@ -1,0 +1,8 @@
+package kr.co.ictedu.mvc.advice;
+
+import org.aspectj.lang.annotation.Aspect;
+
+@Aspect
+public class TodayAdvice {
+
+}

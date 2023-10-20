@@ -1,0 +1,14 @@
+package kr.co.ictedu.mvc.advice;
+
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Component;
+//일반적인 bean으로 Aspect를 등록한다.
+@Component
+@Aspect
+public class TodayAdvice {	
+	
+	public void todayBeforeMethod() {
+		
+	}
+	
+}

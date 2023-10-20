@@ -1,0 +1,14 @@
+package ex1;
+
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+public class Tvuser1 {
+	public static void main(String[] args) {
+		
+		
+		ApplicationContext ctx = new GenericXmlApplicationContext("ex1/tv.xml");
+		
+		
+	}
+
+}

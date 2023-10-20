@@ -1,0 +1,45 @@
+package kr.co.ictedu.mvc.dao;
+
+import java.util.List;
+
+import kr.co.ictedu.mvc.dto.FboardDTO;
+
+public class FboardDao implements FBoardDaoInter{
+
+	@Override
+	public void addFboard(FboardDTO vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<FboardDTO> listFboard() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateHit(int num) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public FboardDTO detailFboard(int num) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteFboard(int num) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateFboard(FboardDTO vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

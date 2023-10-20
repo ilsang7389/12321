@@ -1,0 +1,40 @@
+package ex2;
+
+import ex1.LifeInter;
+
+public class LIfeBean implements LifeInter {
+	private String name;
+	public LIfeBean() {
+		System.out.println("기본 생성자 호출======>");
+	}
+
+
+	public LIfeBean(String name) {
+		this.name = name;
+		System.out.println("생성자 호출======>" + name);
+	}
+	public void setName(String name) {
+		this.name = name;
+		System.out.println("setter 호출");
+	}
+
+
+	@Override
+	public void init() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void destroy() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public String method1() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

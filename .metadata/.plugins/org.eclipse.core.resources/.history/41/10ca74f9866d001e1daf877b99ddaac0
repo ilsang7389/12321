@@ -1,0 +1,40 @@
+package dto;
+
+public class MemberDTO {
+
+	private String password, id, pwd;
+	private String[] chk;
+
+	public String getString() {
+		return String;
+	}
+
+	public void setString(String string) {
+		String = string;
+	}
+
+	public String getIduname() {
+		return iduname;
+	}
+
+	public void setIduname(String iduname) {
+		this.iduname = iduname;
+	}
+
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+
+	public String[] getChk() {
+		return chk;
+	}
+
+	public void setChk(String[] chk) {
+		this.chk = chk;
+	}
+
+}

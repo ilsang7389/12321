@@ -1,0 +1,7 @@
+package ex2;
+
+public interface Message {
+	public void print();
+	public String printtest();
+	public String Message();
+}

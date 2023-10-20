@@ -1,0 +1,10 @@
+package dto;
+
+
+
+public class MemberDTO {
+	
+private String String, iduname, pwd ;
+private  String[] chk) {
+	
+}

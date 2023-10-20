@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fb">
+	<insert id="add" parameterType="dto.FboardDTO">
+		insert into fboard values(fboard_seq.nextVal, #{subject}, #{writer},
+		#{content}, #{reip}, sysdate,0)
+	</insert>
+
+	<!-- ResultSet rs = pstmt.executeQuery(); List<VO> list = new ArrayList(); 
+		while(rs.next(){ vo v = new vo() v.setter(rs.val()); list.add(v); } 이문장이 
+		아래 셀렉문으로 끝 -->
+	<select id="list" resultType="dto.FboardDTO">
+		select * from fboard order by 1 desc
+	</select>
+	<update id="hit" parameterType="int"> <!-- 파라미터 타입은 바인딩 변수로 넘길 값 -->
+		UPDate fboard SET hit+1 where num=#{num}
+	</update>
+	<delete id="del" parameterType="int">
+		Delete from fboard where num=#{num} 	
+	</delete>
+	<update id="update" parameterType="dto.FboardDTO"><!-- Data Value Object (DVO): 데이터 전송 및 저장을위한 객체 -->
+		update fboard set subject=#{subject} , writer=#{writer},
+		content=#{content},reip=#{reip} 
+		where num=#{num}
+	</update>
+	<select id="detail" parameterType="int" resultType="dto.FboardDTO">
+	    select * from fboard where num=#{num}
+	</select>
+	
+</mapper>

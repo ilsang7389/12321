@@ -1,0 +1,25 @@
+package ex1;
+
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+// Ex1_MyResource를 주입 받아서 사용할 객체
+public class Ex1_Resource {
+
+	//@Autowired
+	// java에서 제공해주는 기본 라이브러리
+	// name alias를 사용해서 불러와서 자동 빈 묶기를 함*****
+	@Resource
+	@Qulalifier("bb"); //를 넣어 수식어를 넣어서 정확한 검색이 가능
+	private Ex1_MyResource res;
+	//ex1_res.xml
+	/*
+	 * public void setRes(Ex1_MyResource res) { this.res = res; }
+	 */
+	public Ex1_MyResource getRes() {
+		return res;
+	}
+	
+	
+}
