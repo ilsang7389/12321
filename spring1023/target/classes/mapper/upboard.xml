@@ -24,5 +24,19 @@
 		select count(*) cnt from
 		upboard
 	</select>
+	<update id="hit" parameterType="int"> <!-- 파라미터 타입은 바인딩 변수로 넘길 값 -->
+		UPDATE upboard SET hit = hit + 1 WHERE num = #{num}
+	</update>
+	<delete id="del" parameterType="int">
+		Delete from upboard where num=#{num} 	
+	</delete>
+	<select id="detail" parameterType="int" resultType="upvo">
+	    select * from upboard where num=#{num}
+	</select>
+	<update id="update" parameterType="upvo"><!-- Data Value Object (DVO): 데이터 전송 및 저장을위한 객체 -->
+		update upboard set title=#{title} , writer=#{writer},
+		content=#{content}  ,imgn = #{imgn}
+		where num=#{num}
+	</update>
 
 </mapper>

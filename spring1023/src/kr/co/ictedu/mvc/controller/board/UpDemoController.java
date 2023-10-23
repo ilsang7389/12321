@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.ictedu.mvc.dao.UpBoardDaoInter;
 import kr.co.ictedu.mvc.dto.BoardVO;
+import kr.co.ictedu.mvc.dto.FboardDTO;
 import kr.co.ictedu.mvc.dto.PageVO;
 
 @Controller
@@ -45,7 +47,7 @@ public class UpDemoController {
 		System.out.println("oriFn : " + oriFn);
 
 		// 경로 테스트 이미지가 저장할 경로
-		String img_path = "resouces\\imgfile";
+		String img_path = "resources\\imgfile";
 
 		// 이클립스상에 저장할 이미지 경로
 		String r_path = request.getSession().getServletContext().getRealPath("/");
@@ -159,5 +161,48 @@ public class UpDemoController {
 
 		return "updemo/upList";
 	}
+	
+	@GetMapping("/upboardHit")
+	public String upboardHit(int num) {
+		upBoardDaoInter.updateHit(num);
+		return "redirect:upboardDetail?num=" + num;
+	}
+	
+	@GetMapping("/upboardDetail")
+	public String upboardDetail(int num, Model model) {
+		BoardVO v = upBoardDaoInter.detailupboard(num);
+		model.addAttribute("v", v);
+		return "updemo/upDetail";
+	}
+	
+
+	@GetMapping("/upboardModify")
+	public String fboardModify(int num, Model m) {
+		BoardVO v = upBoardDaoInter.detailupboard(num);
+		m.addAttribute("v", v);
+		return "updemo/modify";
+	}
+
+	@PostMapping("/upboardUpdate")
+	public String fboardUpdate(BoardVO vo) {
+		upBoardDaoInter.updateupboard(vo);
+		return "redirect:upboardDetail?num="+vo.getNum();
+	}
+	
+	@GetMapping("/upboardlist")
+	public String upboarddelete1(int num, BoardVO vo) {
+		upBoardDaoInter.deleteupboard(num);
+		return "updemo/uplist";
+	}
+
+	@PostMapping("upboardDelete")
+	@ResponseBody
+	public String upboardDelete(Integer num) {
+		System.out.println(num);
+		upBoardDaoInter.deleteupboard(num); 
+		return "redirect:upList";
+	}
+	
+	
 
 }

@@ -5,7 +5,7 @@
 <article>
 	<header style="color:white">UpForm Page</header>
 	<ul class="list-unstyled">
-	<li class="border-top my-3">ICT No1 UpForm 페이지 입니다.</li>
+	<li class="border-top my-3">ICT No1 UpForm 수정 페이지 입니다.</li>
 	</ul>
 	<div class="container">
 	<div class="row">
@@ -14,15 +14,15 @@
 		update fboard set subject=? , writer=?,content=?,pwd=?,reip=?
 		where num=?
 		 --%>
-		<form method="post" action="fboardUpdate" autocomplete="off">
+		<form method="post" action="upboardUpdate" autocomplete="off">
 			<input type="hidden" name="num" value="${v.num }">
 			<input type="hidden" name="reip" value="<%=request.getRemoteAddr()%>">
 
 			<div class="row mb-3">
 				<label for="subject" class="col-sm-2 col-form-label">제목</label>
 				<div class="col-sm-10">
-					<input type="text" name="subject" class="form-control" id="subject"
-					value="${v.subject}"
+					<input type="text" name="title" class="form-control" id="title"
+					value="${v.title}"
 					>
 				</div>
 			</div>
@@ -45,7 +45,7 @@
 
 			<button class="custom-btn btn-3" type="submit"><span>수정</span></button>
             <button class="custom-btn btn-danger btn-3" 
-            type="button" onclick="location='tboardList'"><span>리스트</span></button>
+            type="button" onclick="location='upboardList'"><span>리스트</span></button>
 			</div>
 		</form>
 		</div>
