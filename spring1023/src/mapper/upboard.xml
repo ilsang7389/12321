@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="upboard">
+	<insert id="add" parameterType="upvo">
+		insert into upboard
+		values(upboard_seq.nextval, #{title}, #{writer},
+		#{content}, #{imgn},
+		0, #{reip}, sysdate)
+	</insert>
+	<!-- page process 1 -->
+	<select id="list" resultType="upvo" parameterType="map">
+
+		SELECT num,title,writer,imgn,hit,reip,bdate FROM (
+		SELECT ROWNUM r_num, a.* FROM (
+		SELECT num,title,writer,imgn,hit,reip,bdate FROM UPBOARD
+		ORDER BY 1 DESC
+		) a
+		) WHERE r_num BETWEEN #{begin} AND #{end}
+
+	</select>
+	<select id="totalCount" resultType="int">
+		select count(*) cnt from
+		upboard
+	</select>
+
+</mapper>

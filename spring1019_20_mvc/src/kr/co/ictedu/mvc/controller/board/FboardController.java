@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.ictedu.mvc.dao.FBoardDaoInter;
 import kr.co.ictedu.mvc.dto.FboardDTO;
@@ -81,9 +82,11 @@ public class FboardController {
 		return "fboard/fboardlist";
 	}
 
-	@PostMapping("/fboardDelete")
-	public String fboarddelete(FboardDTO vo) {
-		fBoardDaoInter.updateFboard(vo);
+	@PostMapping("fboardDelete")
+	@ResponseBody
+	public String fboardDelete(Integer num) {
+		System.out.println(num);
+		fBoardDaoInter.deleteFboard(num); 
 		return "redirect:fboardList";
 	}
 	

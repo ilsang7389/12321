@@ -29,7 +29,7 @@
 		<property name="jndiName" value="java:comp/env/jdbc/myora" />
 	</bean>
 
-	<!-- MyBatis SqlSessionFactoryBean에서 기존의 confog.xml이나 mapper.xml에서 위임받은 
+	<!-- MyBatis SqlSessionFactoryBean에서 기존의 config.xml이나 mapper.xml에서 위임받은 
 		설정을 한다. -->
 	<bean id="factoryBean"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -39,7 +39,7 @@
 		<property name="mapperLocations"
 			value="classpath*:mapper/*.xml" />
 	</bean>
-	<!-- Spring 제공 하는 SqlSwssionTemplate
+	<!-- Spring 제공 하는 SqlSessionTemplate
 	Dao에서 ss를 Di해야 한다. -->
 	<bean id="ss" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="factoryBean" />
